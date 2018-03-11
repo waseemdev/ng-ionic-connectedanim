@@ -138,9 +138,11 @@ You can pass animation options to `animStart' element.
 ```html
 <img [animStart]="'animation1'" [animOptions]="options">
 ```
-Properties:
+
+Options:
 | Option | Desc.   |
-|--------|---------|
+| ------ | ------- |
+| autoFire | Set autoFire to false to manually play the animation by calling animationService.playAnimation(), default is true. |
 | type | Animation type, e.g.: 'ease', 'ease-in'... |
 | delay | Animation delay. |
 | duration | Animation duration. |
