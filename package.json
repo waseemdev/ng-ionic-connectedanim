@@ -1,0 +1,84 @@
+{
+  "name": "ng-ionic-connectedanim",
+  "version": "0.0.42",
+  "description": "Connected Animation (Shared Element Transition) for Ionic Framework.",
+  "scripts": {
+    "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.metadata.json src/**/*.js tests/**/*.d.ts tests/**/*.metadata.json tests/**/*.js index.d.ts index.metadata.json index.js",
+    "test": "karma start",
+    "test-watch": "karma start --singleRun=false --autoWatch=true",
+    "prepublish": "ngc && npm run build",
+    "ngc": "ngc",
+    "build": "webpack",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waseemdev/ng-ionic-connectedanim.git"
+  },
+  "keywords": [
+    "angular",
+    "ionic",
+    "transition",
+    "animation",
+    "ng-ionic-connectedanim"
+  ],
+  "author": "WaseemDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/waseemdev/ng-ionic-connectedanim/issues"
+  },
+  "homepage": "https://github.com/waseemdev/ng-ionic-connectedanim#readme",
+  "main": "bundles/ng-ionic-connectedanim.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "dependencies": {
+    "@angular/common": "5.0.3",
+    "@angular/core": "5.0.3",
+    "@angular/forms": "5.0.3",
+    "@angular/platform-browser": "5.0.3",
+    "@angular/platform-browser-dynamic": "5.0.3",
+    "ionic-angular": "3.9.2",
+    "rxjs": "5.5.2",
+    "zone.js": "0.8.18"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@angular/compiler": "5.0.3",
+    "@angular/compiler-cli": "5.0.3",
+    "@angular/language-service": "5.0.3",
+    "@types/hammerjs": "2.0.34",
+    "@types/jasmine": "2.5.51",
+    "@types/node": "7.0.28",
+    "awesome-typescript-loader": "3.1.3",
+    "clean-webpack-plugin": "0.1.16",
+    "codelyzer": "4.1.0",
+    "commitizen": "2.9.6",
+    "core-js": "2.4.1",
+    "cz-conventional-changelog": "2.0.0",
+    "istanbul-instrumenter-loader": "2.0.0",
+    "jasmine-core": "2.6.2",
+    "karma": "1.7.0",
+    "karma-chrome-launcher": "2.1.1",
+    "karma-coverage": "1.1.1",
+    "karma-jasmine": "1.1.0",
+    "karma-mocha-reporter": "2.2.3",
+    "karma-remap-coverage": "0.1.4",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-webpack": "2.0.9",
+    "loader-utils": "1.1.0",
+    "reflect-metadata": "0.1.10",
+    "rimraf": "2.6.1",
+    "semantic-release": "6.3.6",
+    "source-map-loader": "0.2.1",
+    "ts-helpers": "1.1.2",
+    "tslint": "5.4.3",
+    "tslint-loader": "3.5.3",
+    "typescript": "2.4.2",
+    "webpack": "3.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

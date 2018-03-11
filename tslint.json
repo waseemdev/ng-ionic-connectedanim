@@ -1,0 +1,16 @@
+{
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
+  "rules": {
+      "no-var-keyword": false,
+      "quotemark": [false
+      ],
+      "whitespace": [false
+      ],
+      "no-internal-module": false,
+      "no-trailing-whitespace": false,
+      "no-inferrable-types": false,
+      "no-null-keyword": false
+  }
+}
