@@ -138,8 +138,8 @@ You can pass animation options to `animStart' element.
 ```html
 <img [animStart]="'animation1'" [animOptions]="options">
 ```
-
 Options:
+<br>
 | Option | Desc.   |
 | ------ | ------- |
 | autoFire | Set autoFire to false to manually play the animation by calling animationService.playAnimation(), default is true. |
@@ -147,3 +147,5 @@ Options:
 | delay | Animation delay. |
 | duration | Animation duration. |
 | targetRect | Target element ('animEnd' element) position or offset. |
+
+<br>
