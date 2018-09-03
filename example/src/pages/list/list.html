@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar [color]="'secondary'">
+        <ion-title mode="ios">Library</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <button ion-item *ngFor="let item of items; let i = index" (click)="gotoDetails(item, i)">
+            <img [src]="item.image" [animStart]="'book-image'" animItem width="70">
+            <h2>{{item.title}}</h2>
+        </button>
+    </ion-list>
+
+</ion-content>
