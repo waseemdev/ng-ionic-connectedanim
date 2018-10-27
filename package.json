@@ -1,6 +1,6 @@
 {
   "name": "ng-ionic-connectedanim",
-  "version": "0.0.42",
+  "version": "0.0.46",
   "description": "Connected Animation (Shared Element Transition) for Ionic Framework.",
   "scripts": {
     "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.metadata.json src/**/*.js tests/**/*.d.ts tests/**/*.metadata.json tests/**/*.js index.d.ts index.metadata.json index.js",

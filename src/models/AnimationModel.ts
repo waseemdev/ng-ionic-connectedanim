@@ -8,7 +8,11 @@ export class AnimationModel {
         data: { animatedPos: any, animatedElement: HTMLElement },
         isMultipleItems: boolean
     };
-    end: { component: any, element: HTMLElement };
+    end: {
+        component: any,
+        element: HTMLElement,
+        pageHeaderHeight: number
+    };
     options: AnimationOptions;
 }
 

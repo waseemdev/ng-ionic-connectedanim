@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, ViewContainerRef } from '@angular/core';
 import { ConnectedAnimationService } from "../providers/AnimService";
 import { AnimationOptions } from '../models/AnimationModel';
-import { App, NavController, Platform } from 'ionic-angular';
+import { App, NavController, Platform, Config } from 'ionic-angular';
 
 let indexes: { [name: string]: number } = { };
 
@@ -13,9 +13,10 @@ export class AnimationStartDirective {
                 private animationService: ConnectedAnimationService,
                 private viewContainerRef: ViewContainerRef,
                 app: App,
+                config: Config,
                 platform: Platform) {
         // since we can't inject App into a service!
-        animationService.initEvents(app, platform.is('android'));
+        animationService.initEvents(app, platform.is('android'), platform.is('ios'), config.get('statusbarPadding'));
 
         let attr = (elementRef.nativeElement as HTMLElement).attributes.getNamedItem('animItem');
         if (attr) {

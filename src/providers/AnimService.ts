@@ -7,14 +7,21 @@ import { UIHelper } from '../utils/UIHelper';
 export class ConnectedAnimationService {
     private eventsInited;
     private readonly loadedViews: Map<any, boolean> = new  Map();
-    private isAndroid: boolean;
+    private android: boolean;
+    private ios: boolean;
+    private statusbarPadding: number = 0;
+    private screenWidth: number = 0;
 
-    initEvents(app: App, isAndroid) {
+    initEvents(app: App, android, ios, statusbarPadding) {
         if (this.eventsInited) {
             return;
         }
+
         this.eventsInited = true;
-        this.isAndroid = isAndroid;
+        this.android = android;
+        this.ios = ios;
+        this.statusbarPadding = statusbarPadding ? 20 : 0;
+        this.screenWidth = document.getElementsByTagName('ion-app').item(0).clientWidth;
         
         app.viewWillEnter.subscribe((view) => {
             try {
@@ -87,8 +94,24 @@ export class ConnectedAnimationService {
 
     addEndElement(name: string, element: HTMLElement, component) {
         var anim: AnimationModel = this.getOrCreateAnim(name);
-        this.animations[name].end = { component: component, element: element };
+        var pageHeaderHeight = this.getPageNavHeaderHeight(element);
+        this.animations[name].end = { component: component, element: element, pageHeaderHeight: pageHeaderHeight };
         this.uiHelper.hideElement(element);
+    }
+
+    private getPageNavHeaderHeight(element: HTMLElement): number {
+        var header;
+        while (element) {
+            element = element.parentElement;
+            if (element.localName === 'ion-app') {
+                break;
+            }
+            if (element.children[0] && element.children[0].localName === 'ion-header') {
+                header = element.children[0];
+                break;
+            }
+        }
+        return header ? (header.clientHeight + this.statusbarPadding) : 0;
     }
 
     private getOrCreateAnim(name: string): AnimationModel {
@@ -128,14 +151,15 @@ export class ConnectedAnimationService {
             let startElement = anim.start.elements[anim.start.isMultipleItems ? this.clickedElementsIndex[anim.name] || 0 : 0];
             let targetRectOpt: any = anim.options.targetRect || {};
             // setTimeout(() => {
-            // todo: recheck getBoundingClientRect sometimes get wrong values if element was none-displayed!
+            // todo: recheck getBoundingClientRect sometimes get wrong values if element wasn't displayed!
             let targetRect = anim.end.element.getBoundingClientRect();
+
             anim.start.data = this.uiHelper.startElementAnimation(
                 startElement,
                 anim.end.element,
                 {
-                    top: (targetRectOpt.top || (targetRect.top + (targetRectOpt.offsetTop || 0))) + (autoFired && this.isAndroid ? 16 /*40*/: 0),
-                    left: targetRectOpt.left || (targetRect.left + (targetRectOpt.offsetLeft || 0)),
+                    top: (targetRectOpt.top || (targetRect.top + (targetRectOpt.offsetTop || 0))) + (autoFired && this.android ? 16 /*40*/: anim.end.pageHeaderHeight),
+                    left: (targetRectOpt.left || (targetRect.left + (targetRectOpt.offsetLeft || 0))) - (autoFired && this.ios ? this.screenWidth : 0),
                     width: targetRectOpt.width || (targetRect.width),
                     height: targetRectOpt.height || (targetRect.height)
                 },
